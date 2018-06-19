@@ -1,0 +1,44 @@
+main .container {
+}
+
+main .tweets {
+  margin-top: 20px;
+  padding: 2em;
+  border-radius: 10px;
+}
+
+article.tweet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-flow: wrap;
+  justify-content: space-between;
+
+  border: 0.5px solid darkgrey;
+  border-radius: 10px;
+}
+
+article.tweet header {
+  background: lightgray;
+  display: flex;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: lightgrey;
+}
+
+article.tweet header.handle {
+  float: right;
+}
+
+article.tweet header.name {
+  display: flex;
+}
+
+article.tweet div {
+  display: flex;
+}
+
+article.tweet footer {
+  display: flex;
+  border-radius: 10px;
+}
