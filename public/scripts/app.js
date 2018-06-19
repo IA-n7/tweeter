@@ -4,34 +4,75 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": {
-      "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-      "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+const data = [
+  {
+    "user": {
+      "name": "Newton",
+      "avatars": {
+        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+      },
+      "handle": "@SirIsaac"
     },
-    "handle": "@SirIsaac"
+    "content": {
+      "text": "If I have seen further it is by standing on the shoulders of giants"
+    },
+    "created_at": 1461116232227
   },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
+  {
+    "user": {
+      "name": "Descartes",
+      "avatars": {
+        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
+        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
+        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
+      },
+      "handle": "@rd" },
+    "content": {
+      "text": "Je pense , donc je suis"
+    },
+    "created_at": 1461113959088
   },
-  "created_at": 1461116232227
-}
+  {
+    "user": {
+      "name": "Johann von Goethe",
+      "avatars": {
+        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
+        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
+        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
+      },
+      "handle": "@johann49"
+    },
+    "content": {
+      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
+    },
+    "created_at": 1461113796368
+  }
+];
 
 $(document).ready(function() {
-  function createTweetElement {
-    let $tweet = $("<article>").addClass("tweet");
-    $tweet.apppend($("<header>"));
-    $tweet.apppend($("<div>"));
-    $tweet.apppend($("<footer>"));
+  function createTweetElement (tweetObj) {
+    let userName = tweetObj["user"]["name"];
+    let avatar = tweetObj["user"]["avatars"]["small"];
+    let handle = tweetObj["user"]["handle"];
+    let content = tweetObj["content"]["text"];
+    let created_at = tweetObj["created_at"];
+
+    let $tweet = $("<article>").addClass("tweet")
+      .append(`<header><img scr=${avatar} alt=" "><span class=name>${userName}</span><span class=handle>${handle}</span></header>`)
+      .append(`<div class=content>${content}</div>`)
+      .append(`<footer class=created_at>${created_at}</footer>`);
+    return $tweet;
   }
+
+  function renderTweets (data) {
+    for (let i = 0; i < data.length; i++) {
+      let tweet = createTweetElement(data[i]);
+      $(".tweets").append(tweet);
+    }
+  }
+
+renderTweets(data);
+
 });
-
-
-var $tweet = createTweetElement(tweetData);
-
-// Test / driver code (temporary)
-console.log($tweet); // to see what it looks like
-$('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.

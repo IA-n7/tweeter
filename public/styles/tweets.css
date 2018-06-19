@@ -9,7 +9,7 @@ main .tweets {
 
 article.tweet {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   flex-flow: wrap;
   justify-content: space-between;
@@ -19,26 +19,31 @@ article.tweet {
 }
 
 article.tweet header {
-  background: lightgray;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-flow: wrap;
+  justify-content: space-between;
+
+  background: lightgray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: lightgrey;
 }
 
-article.tweet header.handle {
-  float: right;
-}
-
-article.tweet header.name {
+article.tweet span.name {
   display: flex;
 }
 
-article.tweet div {
+article.tweet span.handle {
   display: flex;
 }
 
-article.tweet footer {
+article.tweet div.content {
+  display: flex;
+}
+
+article.tweet footer.created_at {
   display: flex;
   border-radius: 10px;
 }
