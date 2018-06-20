@@ -3,47 +3,74 @@ main .container {
 
 main .tweets {
   margin-top: 20px;
-  padding: 2em;
   border-radius: 10px;
 }
 
 article.tweet {
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  flex-flow: wrap;
   justify-content: space-between;
 
-  border: 0.5px solid darkgrey;
   border-radius: 10px;
+  margin: 15px;
+
+  border: 0.5px solid lightgrey;
 }
 
+article.tweet:hover {
+  border: 0.5px solid darkgrey;
+}
+
+article.tweet:hover .icon{
+  display: inline;
+}
+
+
 article.tweet header {
-  display: flex;
+
   flex-direction: column;
   align-items: center;
   flex-flow: wrap;
   justify-content: space-between;
 
-  background: lightgray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: lightgrey;
-}
-
-article.tweet span.name {
+  padding: 10px;
   display: flex;
 }
 
-article.tweet span.handle {
+article.tweet header span.avatar {
+  display: flex;
+}
+
+article.tweet header span.name {
+  position: relative;
+  bottom: 10px;
+  right: 50px;
+  display: flex;
+}
+
+article.tweet header span.handle {
   display: flex;
 }
 
 article.tweet div.content {
-  display: flex;
+  padding: 10px;
+  display:flex;
+  flex-grow: 1;
 }
 
 article.tweet footer.created_at {
-  display: flex;
-  border-radius: 10px;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 0.5px solid lightgray;
+  display:flex;
+  flex-grow: 1;
+}
+
+article.tweet .icon{
+  display: none;
 }

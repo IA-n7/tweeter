@@ -59,20 +59,52 @@ $(document).ready(function() {
     let content = tweetObj["content"]["text"];
     let created_at = tweetObj["created_at"];
 
+    let timeAgo = Math.round(((((Date.now() - created_at) / 1000) / 60) / 60) /24);
+
+
     let $tweet = $("<article>").addClass("tweet")
-      .append(`<header><img scr=${avatar} alt=" "><span class=name>${userName}</span><span class=handle>${handle}</span></header>`)
+      .append(`<header><img class=avatar src=${avatar} alt=" "><span class=name>${userName}</span><span class=handle>${handle}</span></header>`)
       .append(`<div class=content>${content}</div>`)
-      .append(`<footer class=created_at>${created_at}</footer>`);
+      .append(`<footer class=created_at>${timeAgo} Days ago<img class=icon src="/images/flag.png"><img class=icon src="/images/arrows.png"><img class=icon src="/images/happy.png"></footer>`);
     return $tweet;
   }
 
   function renderTweets (data) {
     for (let i = 0; i < data.length; i++) {
       let tweet = createTweetElement(data[i]);
-      $(".tweets").append(tweet);
+      $(".tweets").prepend(tweet);
     }
   }
 
-renderTweets(data);
+  function loadTweets () {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      success: function (data) {
+        renderTweets(data);
+      }
+    });
+  }
+
+  loadTweets();
+
+
+  $(function() {
+    var $button = $('.tweet-button');
+    $button.on('click', function () {
+    let $temp = $("[name='text']").serialize();
+
+    if () {
+      
+    }
+
+      $.ajax({
+        url: '/tweets',
+        method: 'POST',
+        data: $temp,
+        
+      });
+    });
+  });
 
 });
