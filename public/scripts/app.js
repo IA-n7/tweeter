@@ -52,6 +52,14 @@ const data = [
 ];
 
 $(document).ready(function() {
+
+  function escape(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+
   function createTweetElement (tweetObj) {
     let userName = tweetObj["user"]["name"];
     let avatar = tweetObj["user"]["avatars"]["small"];
@@ -64,12 +72,13 @@ $(document).ready(function() {
 
     let $tweet = $("<article>").addClass("tweet")
       .append(`<header><img class=avatar src=${avatar} alt=" "><span class=name>${userName}</span><span class=handle>${handle}</span></header>`)
-      .append(`<div class=content>${content}</div>`)
+      .append(`<div class=content>${escape(content)}</div>`)
       .append(`<footer class=created_at>${timeAgo} Days ago<img class=icon src="/images/flag.png"><img class=icon src="/images/arrows.png"><img class=icon src="/images/happy.png"></footer>`);
     return $tweet;
   }
 
   function renderTweets (data) {
+    $(".tweets").empty();
     for (let i = 0; i < data.length; i++) {
       let tweet = createTweetElement(data[i]);
       $(".tweets").prepend(tweet);
@@ -86,24 +95,32 @@ $(document).ready(function() {
     });
   }
 
-  loadTweets();
-
+   loadTweets();
 
   $(function() {
     var $button = $('.tweet-button');
     $button.on('click', function () {
     let $temp = $("[name='text']").serialize();
-
-    if () {
-      
-    }
-
-      $.ajax({
+    if ($temp.length-5 > 140) {
+      alert("Too many characters!")
+      //set time-out
+      return;
+    }    
+    if ($temp === "text=") {
+      alert("Please enter a tweet!")
+      return;
+    } else {
+        $.ajax({
         url: '/tweets',
         method: 'POST',
         data: $temp,
-        
-      });
+        success: function (data) {
+          loadTweets();
+          $(".tweet-text").val("");
+          $(".counter").text("140");
+        }
+        });
+    }
     });
   });
 
