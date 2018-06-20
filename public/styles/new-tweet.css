@@ -2,6 +2,7 @@ main .container {
 }
 
 main .new-tweet { 
+  display: none;
   padding: 2em;
   background: lightgray;
   border-radius: 10px; 

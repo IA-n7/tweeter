@@ -53,6 +53,13 @@ const data = [
 
 $(document).ready(function() {
 
+  $(function() {
+    var $compose = $('.compose');
+    $compose.on('click', function () {
+      $(".new-tweet").slideToggle(400);
+    });
+  });
+
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -95,19 +102,25 @@ $(document).ready(function() {
     });
   }
 
-   loadTweets();
+  //Initial tweet container loading
+  loadTweets();
 
+
+  //POSTing submitted tweets
   $(function() {
     var $button = $('.tweet-button');
     $button.on('click', function () {
     let $temp = $("[name='text']").serialize();
     if ($temp.length-5 > 140) {
-      alert("Too many characters!")
-      //set time-out
+      let $tooManyChars = $(`<p>Too many character!</p>`)
+      $(".new-tweet").append($tooManyChars);
+      $tooManyChars.fadeOut(5000);
       return;
     }    
     if ($temp === "text=") {
-      alert("Please enter a tweet!")
+      let $noChars = $(`<p>Please enter a tweet!</p>`)
+      $(".new-tweet").append($noChars);
+      $noChars.fadeOut(5000);
       return;
     } else {
         $.ajax({

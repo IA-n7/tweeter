@@ -23,9 +23,10 @@ body {
 
 
 main {
+  border-radius: 10px;
   width: 450px;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #eee;
   top: 140px;
   margin: auto;
   position: relative;

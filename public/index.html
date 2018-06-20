@@ -36,6 +36,10 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      <div class="buttons">
+      <input class="button1 all-buttons" type="submit" value="IDONOTHING">  
+      <button class="compose all-buttons" type="submit"><img src="/images/create.png" alt= " ">Compose</button>
+      </div>
     </nav>
 
     <!-- Page-specific (main) content here -->
@@ -48,17 +52,17 @@
           <span class="counter">140</span>
         </form>
 
-
-<script>
-$( ".tweet-form" ).click(function( event ) {
-  event.preventDefault();
-});
-</script>
-
-
+        <script>
+        $( ".tweet-form" ).click(function( event ) {
+          event.preventDefault();
+        });
+        </script>
+        
       </section>
+
       <section class="tweets">
       </section>
+
     </main>
 
   </body>
