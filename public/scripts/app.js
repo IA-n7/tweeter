@@ -56,7 +56,8 @@ $(document).ready(function() {
   $(function() {
     var $compose = $('.compose');
     $compose.on('click', function () {
-      $(".new-tweet").slideToggle(400);
+      $(".new-tweet").slideToggle(300);
+      $(".tweet-text").focus();
     });
   });
 
