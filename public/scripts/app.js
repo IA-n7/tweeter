@@ -81,7 +81,7 @@ $(document).ready(function() {
     let $tweet = $("<article>").addClass("tweet")
       .append(`<header><img class=avatar src=${avatar} alt=" "><span class=name>${userName}</span><span class=handle>${handle}</span></header>`)
       .append(`<div class=content>${escape(content)}</div>`)
-      .append(`<footer class=created_at>${timeAgo} Days ago<img class=icon src="/images/flag.png"><img class=icon src="/images/arrows.png"><img class=icon src="/images/happy.png"></footer>`);
+      .append(`<footer class=created_at>${timeAgo} Days ago<div class=icons><img src="/images/flag.png"><img src="/images/arrows.png"><img src="/images/happy.png"></div</footer>`);
     return $tweet;
   }
 
