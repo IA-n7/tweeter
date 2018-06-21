@@ -53,6 +53,7 @@ const data = [
 
 $(document).ready(function() {
 
+  //New tweet "Compose" button handling
   $(function() {
     var $compose = $('.compose');
     $compose.on('click', function () {
@@ -69,6 +70,7 @@ $(document).ready(function() {
 
 
   function createTweetElement (tweetObj) {
+    //defining data points
     let userName = tweetObj["user"]["name"];
     let avatar = tweetObj["user"]["avatars"]["small"];
     let handle = tweetObj["user"]["handle"];
@@ -77,7 +79,7 @@ $(document).ready(function() {
 
     let timeAgo = Math.round(((((Date.now() - created_at) / 1000) / 60) / 60) /24);
 
-
+    //creating new-tweet element and plugging in data points
     let $tweet = $("<article>").addClass("tweet")
       .append(`<header><img class=avatar src=${avatar} alt=" "><span class=name>${userName}</span><span class=handle>${handle}</span></header>`)
       .append(`<div class=content>${escape(content)}</div>`)
@@ -109,21 +111,34 @@ $(document).ready(function() {
 
   //POSTing submitted tweets
   $(function() {
+    //tweet button handler
     var $button = $('.tweet-button');
     $button.on('click', function () {
     let $temp = $("[name='text']").serialize();
+    //empty-field and over-charater-limit handlers
     if ($temp.length-5 > 140) {
-      let $tooManyChars = $(`<p>Too many character!</p>`)
-      $(".new-tweet").append($tooManyChars);
-      $tooManyChars.fadeOut(5000);
+      $check = $(".over-limit").val();
+      //checking for existence of warning message, stopping duplicates
+      if ($check === undefined) {
+        let $tooManyChars = $(`<p class=over-limit>Too many character!</p>`)
+        $(".new-tweet").append($tooManyChars);
+        $tooManyChars.fadeOut(4000);
+        setTimeout(function(){ $(".over-limit").remove(); }, 4000);
+      }      
       return;
     }    
     if ($temp === "text=") {
-      let $noChars = $(`<p>Please enter a tweet!</p>`)
-      $(".new-tweet").append($noChars);
-      $noChars.fadeOut(5000);
+      $check = $(".empty-field").val();
+      //checking for existence of warning message, stopping duplicates
+      if ($check === undefined) {
+        let $noChars = $(`<p class=empty-field>Please enter a tweet!</p>`)
+        $(".new-tweet").append($noChars);
+        $noChars.fadeOut(4000);
+        setTimeout(function(){ $(".empty-field").remove(); }, 4000);
+      }
       return;
     } else {
+      //POSTig data tweets url/database
         $.ajax({
         url: '/tweets',
         method: 'POST',

@@ -31,9 +31,9 @@ main .tweet-text {
 }
 
 main .counter {
+  color: dimgray;
   display: flex;
   padding-left: 10px;
-  color: black;
 }
 
 /*css code for buttons generated from http://livetools.uiparade.com/button-builder.html#*/

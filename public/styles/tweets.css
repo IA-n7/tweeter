@@ -17,7 +17,7 @@ article.tweet {
 }
 
 article.tweet:hover {
-  border: 0.5px solid darkgrey;
+  border: 1px solid darkgrey;
 }
 
 article.tweet:hover .icons{
