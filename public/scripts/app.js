@@ -94,6 +94,7 @@ $(document).ready(function() {
         data: $temp,
         success: function (data) {
           loadTweets();
+          //resetting counter and text fields
           $(".tweet-text").val("");
           $(".counter").text("140");
         }
