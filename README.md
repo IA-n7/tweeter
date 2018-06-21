@@ -5,6 +5,8 @@ It is built using HTML, CSS, JS, jQuery and AJAX for front-end, and Node, Expres
 
 ##Final Product
 
+!["Screenshot of Tweet composition box"](https://github.com/IA-n7/tweeter/blob/master/docs/tweet-box.png?raw=true)
+!["Screenshot of tweets"](https://github.com/IA-n7/tweeter/blob/master/docs/tweets.png?raw=true)
 
 
 ## Dependencies
