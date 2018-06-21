@@ -7,7 +7,6 @@ $(document).ready(function() {
     if(event.keyCode === 8) {
       let allowedChars = 140;
       let currentChars = ($(this).val()).length;
-      console.log(currentChars);
 
       //updating counter
       $(".counter").text(allowedChars-currentChars);
